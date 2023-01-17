@@ -31,6 +31,7 @@ class BinViewModel : ViewModel() {
             _status.value = BinApiStatus.LOADING
             try {
                 _bin.value = BinApi.retrofitService.getBinDetail(binInput)
+                _bin.value!!.bin = binInput
                 _bins.value?.plus(_bin.value)
                 _status.value = BinApiStatus.DONE
             } catch (e: Exception) {
