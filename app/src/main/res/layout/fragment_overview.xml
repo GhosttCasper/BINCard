@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.bincard.ui.main.BinViewModel" />
     </data>
 
 
@@ -63,5 +66,6 @@
             app:layout_constraintTop_toBottomOf="@id/input"
             tools:listitem="@layout/list_view_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--app:listData="@{viewModel.bins}"-->
 
 </layout>
