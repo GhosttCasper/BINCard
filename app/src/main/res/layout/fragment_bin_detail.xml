@@ -155,10 +155,10 @@
 
                         <TextView
                             android:id="@+id/yes_luhn_label"
-                            style="@style/Widget.BINCard.TextView.InnerLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/yes"
+                            app:isSelectedStyle="@{viewModel.Bin.number.luhn}"
                             tools:style="@style/Widget.BINCard.TextView.Detail" />
 
                         <TextView
@@ -169,10 +169,10 @@
 
                         <TextView
                             android:id="@+id/no_luhn_label"
-                            style="@style/Widget.BINCard.TextView.InnerLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/no"
+                            app:isSelectedStyle="@{!viewModel.Bin.number.luhn}"
                             tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
 
                     </LinearLayout>
@@ -202,10 +202,10 @@
 
                 <TextView
                     android:id="@+id/debit_label"
-                    style="@style/Widget.BINCard.TextView.InnerLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/debit"
+                    app:isSelectedStyle="@{viewModel.Bin.type.equalsIgnoreCase(@string/debit) ? true : false }"
                     tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
 
                 <TextView
@@ -216,10 +216,10 @@
 
                 <TextView
                     android:id="@+id/credit_label"
-                    style="@style/Widget.BINCard.TextView.InnerLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/credit"
+                    app:isSelectedStyle="@{viewModel.Bin.type.equalsIgnoreCase(@string/credit) ? true : false }"
                     tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
 
             </LinearLayout>
@@ -247,10 +247,10 @@
 
                 <TextView
                     android:id="@+id/yes_prepaid_label"
-                    style="@style/Widget.BINCard.TextView.InnerLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/yes"
+                    app:isSelectedStyle="@{viewModel.Bin.prepaid}"
                     tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
 
                 <TextView
@@ -261,10 +261,10 @@
 
                 <TextView
                     android:id="@+id/no_prepaid_label"
-                    style="@style/Widget.BINCard.TextView.InnerLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no"
+                    app:isSelectedStyle="@{!viewModel.Bin.prepaid}"
                     tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
 
             </LinearLayout>
@@ -290,7 +290,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/detail_margin"
-                android:text="@{viewModel.Bin.country.emoji}"
+                android:text="@{viewModel.Bin.country.emoji + viewModel.Bin.country.name}"
                 tools:text="🇩🇰 Denmark" />
 
             <TextView
