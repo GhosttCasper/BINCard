@@ -26,17 +26,18 @@ class BinViewModel : ViewModel() {
 
     //  Create a function that get a Bin from the api service and sets the
     //  status via a Coroutine
+    @Suppress("UNCHECKED_CAST")
     fun getBin(binInput: String) {
         viewModelScope.launch {
             _status.value = BinApiStatus.LOADING
             try {
                 _bin.value = BinApi.retrofitService.getBinDetail(binInput)
                 _bin.value!!.bin = binInput
-                _bins.value?.plus(_bin.value)
+                _bins.value = (_bins.value?.plus(_bin.value) ?: listOf(_bin.value)) as List<Bin>?
                 _status.value = BinApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = BinApiStatus.ERROR
-                //_bin.value = null
+                _bins.value = listOf()
             }
         }
     }

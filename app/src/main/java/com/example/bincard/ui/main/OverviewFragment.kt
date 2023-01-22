@@ -23,6 +23,14 @@ class OverviewFragment : Fragment() {
     ): View? {
         binding = FragmentOverviewBinding.inflate(inflater)
 
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        binding.recyclerView.adapter = BinListAdapter(BinListener { bin ->
+            viewModel.onBinClicked(bin)
+            findNavController()
+                .navigate(R.id.action_overviewFragment_to_binDetailFragment)
+        })
+
         // Setup a click listener for the Submit button.
         binding.submit.setOnClickListener { onSubmitBin() }
 
@@ -35,7 +43,5 @@ class OverviewFragment : Fragment() {
         viewModel.getBin(binInput)
         findNavController()
             .navigate(R.id.action_overviewFragment_to_binDetailFragment)
-
-
     }
 }

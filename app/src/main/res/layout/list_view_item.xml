@@ -1,66 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="4dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="bin"
+            type="com.example.bincard.network.Bin" />
+
+        <variable
+            name="clickListener"
+            type="com.example.bincard.ui.main.BinListener" />
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:onClick="@{() -> clickListener.onClick(bin)}"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp">
 
-        <TextView
-            android:id="@+id/bin"
-            style="@style/Widget.BINCard.TextView.Detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="457173" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/scheme_network"
-            style="@style/Widget.BINCard.TextView.InnerLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/bin"
-            app:layout_constraintTop_toBottomOf="@id/bin"
-            tools:text="Visa" />
+            <TextView
+                android:id="@+id/bin_id"
+                style="@style/Widget.BINCard.TextView.Detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{bin.bin}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="457173" />
 
-        <TextView
-            android:id="@+id/country"
-            style="@style/Widget.BINCard.TextView.InnerLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/detail_margin"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/bin"
-            tools:text="🇩🇰 Denmark" />
+            <TextView
+                android:id="@+id/scheme_network"
+                style="@style/Widget.BINCard.TextView.InnerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{bin.scheme}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/bin_id"
+                app:layout_constraintTop_toBottomOf="@id/bin_id"
+                tools:text="Visa" />
 
-        <TextView
-            android:id="@+id/name_city"
-            style="@style/Widget.BINCard.TextView.InnerLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/detail_margin"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="2dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/country"
-            tools:text="Jyske Bank, Hjørring" />
+            <TextView
+                android:id="@+id/country"
+                style="@style/Widget.BINCard.TextView.InnerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/detail_margin"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:maxLines="1"
+                android:text="@{bin.country.emoji + bin.country.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/bin_id"
+                tools:text="🇩🇰 Denmark" />
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/name_city"
+                style="@style/Widget.BINCard.TextView.InnerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/detail_margin"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="2dp"
+                android:ellipsize="end"
+                android:maxEms="11"
+                android:maxLines="1"
+                android:text="@{bin.bank.city.isEmpty() ? bin.bank.name : bin.bank.name +`, ` + bin.bank.city}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country"
+                tools:text="Jyske Bank, Hjørring" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

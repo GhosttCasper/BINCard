@@ -14,344 +14,363 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Group the order details into a single ViewGroup and set focusable = true,
-             so all fields will be read aloud together by the accessibility service -->
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            android:orientation="vertical"
-            android:padding="@dimen/side_margin">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/bin_label"
-                style="@style/Widget.BINCard.TextView.Label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bin" />
-
-            <TextView
-                android:id="@+id/bin"
-                style="@style/Widget.BINCard.TextView.Detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/detail_margin"
-                android:text="@{viewModel.Bin.bin}"
-                tools:text="457173" />
-
-            <View
-                android:id="@+id/divider1"
-                style="@style/Widget.BINCard.Divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginBottom="@dimen/side_margin" />
-
-            <TextView
-                android:id="@+id/scheme_network_label"
-                style="@style/Widget.BINCard.TextView.Label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/scheme_network" />
-
-            <TextView
-                android:id="@+id/scheme_network"
-                style="@style/Widget.BINCard.TextView.Detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/detail_margin"
-                android:text="@{viewModel.Bin.scheme}"
-                tools:text="Visa" />
-
-            <View
-                android:id="@+id/divider2"
-                style="@style/Widget.BINCard.Divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginBottom="@dimen/side_margin" />
-
-            <TextView
-                android:id="@+id/brand_label"
-                style="@style/Widget.BINCard.TextView.Label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/brand" />
-
-            <TextView
-                android:id="@+id/brand"
-                style="@style/Widget.BINCard.TextView.Detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/detail_margin"
-                android:text="@{viewModel.Bin.brand}"
-                tools:text="Visa/Dankort" />
-
-            <View
-                android:id="@+id/divider3"
-                style="@style/Widget.BINCard.Divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginBottom="@dimen/margin_between_elements" />
-
-            <TextView
-                android:id="@+id/card_number_label"
-                style="@style/Widget.BINCard.TextView.Label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/card_number" />
-
+            <!-- Group the order details into a single ViewGroup and set focusable = true,
+                 so all fields will be read aloud together by the accessibility service -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:padding="@dimen/side_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/bin_label"
+                    style="@style/Widget.BINCard.TextView.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bin" />
+
+                <TextView
+                    android:id="@+id/bin"
+                    style="@style/Widget.BINCard.TextView.Detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detail_margin"
+                    android:text="@{viewModel.Bin.bin}"
+                    tools:text="457173" />
+
+                <View
+                    android:id="@+id/divider1"
+                    style="@style/Widget.BINCard.Divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/side_margin"
+                    android:layout_marginBottom="@dimen/side_margin" />
+
+                <TextView
+                    android:id="@+id/scheme_network_label"
+                    style="@style/Widget.BINCard.TextView.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/scheme_network" />
+
+                <TextView
+                    android:id="@+id/scheme_network"
+                    style="@style/Widget.BINCard.TextView.Detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detail_margin"
+                    android:text="@{viewModel.Bin.scheme}"
+                    tools:text="Visa" />
+
+                <View
+                    android:id="@+id/divider2"
+                    style="@style/Widget.BINCard.Divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/side_margin"
+                    android:layout_marginBottom="@dimen/side_margin" />
+
+                <TextView
+                    android:id="@+id/brand_label"
+                    style="@style/Widget.BINCard.TextView.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/brand" />
+
+                <TextView
+                    android:id="@+id/brand"
+                    style="@style/Widget.BINCard.TextView.Detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detail_margin"
+                    android:text="@{viewModel.Bin.brand}"
+                    tools:text="Visa/Dankort" />
+
+                <View
+                    android:id="@+id/divider3"
+                    style="@style/Widget.BINCard.Divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/side_margin"
+                    android:layout_marginBottom="@dimen/margin_between_elements" />
+
+                <TextView
+                    android:id="@+id/card_number_label"
+                    style="@style/Widget.BINCard.TextView.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/card_number" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/side_margin"
                     android:focusable="true"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/length_label"
-                        style="@style/Widget.BINCard.TextView.Label"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/length" />
+                        android:layout_marginEnd="@dimen/side_margin"
+                        android:focusable="true"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/length"
-                        style="@style/Widget.BINCard.TextView.Detail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/detail_margin"
-                        android:text="@{viewModel.Bin.number.length.toString()}"
-                        tools:text="16" />
+                        <TextView
+                            android:id="@+id/length_label"
+                            style="@style/Widget.BINCard.TextView.Label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/length" />
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/length"
+                            style="@style/Widget.BINCard.TextView.Detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/detail_margin"
+                            android:text="@{viewModel.Bin.number.length.toString()}"
+                            tools:text="16" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:focusable="true"
-                    android:orientation="vertical"
-                    android:paddingStart="48dp">
-
-                    <TextView
-                        android:id="@+id/luhn_label"
-                        style="@style/Widget.BINCard.TextView.Label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/luhn" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:focusable="true"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:paddingStart="48dp">
 
                         <TextView
-                            android:id="@+id/yes_luhn_label"
+                            android:id="@+id/luhn_label"
+                            style="@style/Widget.BINCard.TextView.Label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/yes"
-                            app:isSelectedStyle="@{viewModel.Bin.number.luhn}"
-                            tools:style="@style/Widget.BINCard.TextView.Detail" />
+                            android:text="@string/luhn" />
 
-                        <TextView
-                            style="@style/Widget.BINCard.TextView.InnerLabel"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/slash" />
+                            android:focusable="true"
+                            android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/no_luhn_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/no"
-                            app:isSelectedStyle="@{!viewModel.Bin.number.luhn}"
-                            tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
+                            <TextView
+                                android:id="@+id/yes_luhn_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/yes"
+                                app:isSelectedStyle="@{viewModel.Bin.number.luhn}"
+                                tools:style="@style/Widget.BINCard.TextView.Detail" />
 
+                            <TextView
+                                style="@style/Widget.BINCard.TextView.InnerLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/slash" />
+
+                            <TextView
+                                android:id="@+id/no_luhn_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/no"
+                                app:isSelectedStyle="@{viewModel.Bin.number.luhn==null ? false : !viewModel.Bin.number.luhn}"
+                                tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
+
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
 
-            <View
-                android:id="@+id/divider4"
-                style="@style/Widget.BINCard.Divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginBottom="@dimen/margin_between_elements" />
-
-            <TextView
-                android:id="@+id/type_label"
-                style="@style/Widget.BINCard.TextView.Label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/type" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:orientation="horizontal">
+                <View
+                    android:id="@+id/divider4"
+                    style="@style/Widget.BINCard.Divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/side_margin"
+                    android:layout_marginBottom="@dimen/margin_between_elements" />
 
                 <TextView
-                    android:id="@+id/debit_label"
+                    android:id="@+id/type_label"
+                    style="@style/Widget.BINCard.TextView.Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/debit"
-                    app:isSelectedStyle="@{viewModel.Bin.type.equalsIgnoreCase(@string/debit) ? true : false }"
-                    tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
+                    android:text="@string/type" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/debit_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/debit"
+                        app:isSelectedStyle="@{viewModel.Bin.type.equalsIgnoreCase(@string/debit) ? true : false }"
+                        tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
+
+                    <TextView
+                        style="@style/Widget.BINCard.TextView.InnerLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/slash" />
+
+                    <TextView
+                        android:id="@+id/credit_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/credit"
+                        app:isSelectedStyle="@{viewModel.Bin.type.equalsIgnoreCase(@string/credit) ? true : false }"
+                        tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider5"
+                    style="@style/Widget.BINCard.Divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/side_margin"
+                    android:layout_marginBottom="@dimen/margin_between_elements" />
 
                 <TextView
+                    android:id="@+id/prepaid_label"
+                    style="@style/Widget.BINCard.TextView.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/prepaid" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/yes_prepaid_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes"
+                        app:isSelectedStyle="@{viewModel.Bin.prepaid}"
+                        tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
+
+                    <TextView
+                        style="@style/Widget.BINCard.TextView.InnerLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/slash" />
+
+                    <TextView
+                        android:id="@+id/no_prepaid_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no"
+                        app:isSelectedStyle="@{viewModel.Bin.prepaid==null ? false : !viewModel.Bin.prepaid}"
+                        tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider6"
+                    style="@style/Widget.BINCard.Divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/side_margin"
+                    android:layout_marginBottom="@dimen/margin_between_elements" />
+
+                <TextView
+                    android:id="@+id/country_label"
+                    style="@style/Widget.BINCard.TextView.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/country" />
+
+                <TextView
+                    android:id="@+id/country"
+                    style="@style/Widget.BINCard.TextView.Detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detail_margin"
+                    android:text="@{viewModel.Bin.country.emoji + viewModel.Bin.country.name}"
+                    tools:text="🇩🇰 Denmark" />
+
+                <TextView
+                    android:id="@+id/latitude_longitude"
                     style="@style/Widget.BINCard.TextView.InnerLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/slash" />
+                    android:layout_marginTop="@dimen/detail_margin"
+                    app:htmlText="@{@string/latitude_longitude(viewModel.Bin.country.latitude,viewModel.Bin.country.longitude)}"
+                    tools:text="(latitude: 56, longitude: 10)" />
+
+                <View
+                    android:id="@+id/divider7"
+                    style="@style/Widget.BINCard.Divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/side_margin"
+                    android:layout_marginBottom="@dimen/margin_between_elements" />
 
                 <TextView
-                    android:id="@+id/credit_label"
+                    android:id="@+id/bank_label"
+                    style="@style/Widget.BINCard.TextView.Label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/credit"
-                    app:isSelectedStyle="@{viewModel.Bin.type.equalsIgnoreCase(@string/credit) ? true : false }"
-                    tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/divider5"
-                style="@style/Widget.BINCard.Divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginBottom="@dimen/margin_between_elements" />
-
-            <TextView
-                android:id="@+id/prepaid_label"
-                style="@style/Widget.BINCard.TextView.Label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/prepaid" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:orientation="horizontal">
+                    android:text="@string/bank" />
 
                 <TextView
-                    android:id="@+id/yes_prepaid_label"
+                    android:id="@+id/name_city"
+                    style="@style/Widget.BINCard.TextView.Detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/yes"
-                    app:isSelectedStyle="@{viewModel.Bin.prepaid}"
-                    tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
+                    android:layout_marginTop="@dimen/detail_margin"
+                    android:text="@{viewModel.Bin.bank.city.isEmpty() ? viewModel.Bin.bank.name : viewModel.Bin.bank.name +`, ` + viewModel.Bin.bank.city}"
+                    tools:text="Jyske Bank, Hjørring" />
 
                 <TextView
+                    android:id="@+id/url"
                     style="@style/Widget.BINCard.TextView.InnerLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/slash" />
+                    android:layout_marginTop="@dimen/detail_margin"
+                    android:text="@{viewModel.Bin.bank.url}"
+                    android:textColor="@color/blue"
+                    tools:text="www.jyskebank.dk" />
 
                 <TextView
-                    android:id="@+id/no_prepaid_label"
+                    android:id="@+id/phone"
+                    style="@style/Widget.BINCard.TextView.InnerLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/no"
-                    app:isSelectedStyle="@{!viewModel.Bin.prepaid}"
-                    tools:style="@style/Widget.BINCard.TextView.InnerLabel" />
+                    android:layout_marginTop="@dimen/detail_margin"
+                    android:text="@{viewModel.Bin.bank.phone}"
+                    tools:text="+4589893300" />
 
+                <View
+                    android:id="@+id/divider8"
+                    style="@style/Widget.BINCard.Divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/side_margin"
+                    android:layout_marginBottom="@dimen/margin_between_elements" />
             </LinearLayout>
 
-            <View
-                android:id="@+id/divider6"
-                style="@style/Widget.BINCard.Divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginBottom="@dimen/margin_between_elements" />
-
-            <TextView
-                android:id="@+id/country_label"
-                style="@style/Widget.BINCard.TextView.Label"
+            <!--  set the apiStatus binding to the status from the view model -->
+            <ImageView
+                android:id="@+id/status_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/country" />
+                app:apiStatus="@{viewModel.status}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/country"
-                style="@style/Widget.BINCard.TextView.Detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/detail_margin"
-                android:text="@{viewModel.Bin.country.emoji + viewModel.Bin.country.name}"
-                tools:text="🇩🇰 Denmark" />
-
-            <TextView
-                android:id="@+id/latitude_longitude"
-                style="@style/Widget.BINCard.TextView.InnerLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/detail_margin"
-                app:htmlText="@{@string/latitude_longitude(viewModel.Bin.country.latitude,viewModel.Bin.country.longitude)}"
-                tools:text="(latitude: 56, longitude: 10)" />
-
-            <View
-                android:id="@+id/divider7"
-                style="@style/Widget.BINCard.Divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginBottom="@dimen/margin_between_elements" />
-
-            <TextView
-                android:id="@+id/bank_label"
-                style="@style/Widget.BINCard.TextView.Label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bank" />
-
-            <TextView
-                android:id="@+id/name_city"
-                style="@style/Widget.BINCard.TextView.Detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/detail_margin"
-                android:text="@{viewModel.Bin.bank.name}"
-                tools:text="Jyske Bank, Hjørring" />
-
-            <TextView
-                android:id="@+id/url"
-                style="@style/Widget.BINCard.TextView.InnerLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/detail_margin"
-                android:text="@{viewModel.Bin.bank.url}"
-                android:textColor="@color/blue"
-                tools:text="www.jyskebank.dk" />
-
-            <TextView
-                android:id="@+id/phone"
-                style="@style/Widget.BINCard.TextView.InnerLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/detail_margin"
-                android:text="@{viewModel.Bin.bank.phone}"
-                tools:text="+4589893300" />
-
-            <View
-                android:id="@+id/divider8"
-                style="@style/Widget.BINCard.Divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/side_margin"
-                android:layout_marginBottom="@dimen/margin_between_elements" />
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
