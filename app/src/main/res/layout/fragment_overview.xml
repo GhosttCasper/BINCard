@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.bincard.ui.main.BinViewModel" />
+            type="com.example.bincard.ui.viewmodel.BinViewModel" />
     </data>
 
 

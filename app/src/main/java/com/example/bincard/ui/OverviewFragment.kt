@@ -1,4 +1,4 @@
-package com.example.bincard.ui.main
+package com.example.bincard.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.bincard.R
 import com.example.bincard.databinding.FragmentOverviewBinding
+import com.example.bincard.ui.adapter.BinListAdapter
+import com.example.bincard.ui.adapter.BinListener
+import com.example.bincard.ui.viewmodel.BinViewModel
 
 const val MAX_SIZE_BIN = 8
 const val MIN_SIZE_BIN = 6

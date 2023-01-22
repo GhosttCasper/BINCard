@@ -11,7 +11,7 @@
 
         <variable
             name="clickListener"
-            type="com.example.bincard.ui.main.BinListener" />
+            type="com.example.bincard.ui.adapter.BinListener" />
     </data>
 
 

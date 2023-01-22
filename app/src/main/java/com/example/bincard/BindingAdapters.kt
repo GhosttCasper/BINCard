@@ -8,8 +8,8 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.paris.extensions.style
 import com.example.bincard.network.Bin
-import com.example.bincard.ui.main.BinApiStatus
-import com.example.bincard.ui.main.BinListAdapter
+import com.example.bincard.ui.viewmodel.BinApiStatus
+import com.example.bincard.ui.adapter.BinListAdapter
 
 @BindingAdapter(value = ["htmlText"])
 fun TextView.setHtmlText(string: String?) {

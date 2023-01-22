@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/overviewFragment"
-        android:name="com.example.bincard.ui.main.OverviewFragment"
+        android:name="com.example.bincard.ui.OverviewFragment"
         android:label="OverviewFragment"
         tools:layout="@layout/fragment_overview">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/binDetailFragment"
-        android:name="com.example.bincard.ui.main.BinDetailFragment"
+        android:name="com.example.bincard.ui.BinDetailFragment"
         android:label="BinDetailFragment"
         tools:layout="@layout/fragment_bin_detail" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.bincard.ui.main
+package com.example.bincard.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

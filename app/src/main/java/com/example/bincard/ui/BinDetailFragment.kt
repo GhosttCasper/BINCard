@@ -1,4 +1,4 @@
-package com.example.bincard.ui.main
+package com.example.bincard.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.bincard.databinding.FragmentBinDetailBinding
+import com.example.bincard.ui.viewmodel.BinViewModel
 
 class BinDetailFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.example.bincard.ui.main
+package com.example.bincard.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
