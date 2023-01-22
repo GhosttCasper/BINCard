@@ -10,6 +10,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.bincard.R
 import com.example.bincard.databinding.FragmentOverviewBinding
 
+const val MAX_SIZE_BIN = 8
+const val MIN_SIZE_BIN = 6
+
 class OverviewFragment : Fragment() {
 
     // Binding object instance with access to the views in the game_fragment.xml layout
@@ -40,8 +43,31 @@ class OverviewFragment : Fragment() {
 
     private fun onSubmitBin() {
         val binInput = binding.textInputEditText.text.toString()
-        viewModel.getBin(binInput)
-        findNavController()
-            .navigate(R.id.action_overviewFragment_to_binDetailFragment)
+        if (isInputCorrect(binInput)) {
+            setErrorTextField(false)
+            viewModel.getBin(binInput)
+            findNavController()
+                .navigate(R.id.action_overviewFragment_to_binDetailFragment)
+        } else
+            setErrorTextField(true)
+    }
+
+    fun isInputCorrect(input: String): Boolean {
+        if (input.length in MIN_SIZE_BIN..MAX_SIZE_BIN
+            && input.matches(Regex("\\d+"))
+        ) {
+            return true
+        }
+        return false
+    }
+
+    private fun setErrorTextField(error: Boolean) {
+        if (error) {
+            binding.textField.isErrorEnabled = true
+            binding.textField.error = getString(R.string.try_again)
+        } else {
+            binding.textField.isErrorEnabled = false
+            binding.textInputEditText.text = null
+        }
     }
 }

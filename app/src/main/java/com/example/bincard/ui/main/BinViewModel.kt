@@ -37,7 +37,7 @@ class BinViewModel : ViewModel() {
                 _status.value = BinApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = BinApiStatus.ERROR
-                _bins.value = listOf()
+                _bin.value = Bin()
             }
         }
     }
@@ -45,5 +45,6 @@ class BinViewModel : ViewModel() {
     fun onBinClicked(bin: Bin) {
         // Set the Bin object
         _bin.value = bin
+        _status.value = BinApiStatus.DONE
     }
 }

@@ -18,5 +18,6 @@
     <string name="bank">Bank</string>
     <string name="submit">Submit</string>
     <string name="enter_your_bin">Enter your BIN</string>
+    <string name="try_again">BIN – first 6–8 digits from card number.\nTry again!</string>
 
 </resources>
