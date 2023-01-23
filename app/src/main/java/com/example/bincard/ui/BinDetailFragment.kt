@@ -1,5 +1,7 @@
 package com.example.bincard.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,8 +23,17 @@ class BinDetailFragment : Fragment() {
         val binding = FragmentBinDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.binDetailFragment = this@BinDetailFragment
 
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    fun launchMap(latitude: Int, longitude: Int) {
+        val coordinates = "$latitude, $longitude"
+        val gmmIntentUri = Uri.parse("geo:0,0?q=$coordinates")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        startActivity(mapIntent)
     }
 }

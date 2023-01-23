@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="binDetailFragment"
+            type="com.example.bincard.ui.BinDetailFragment" />
+
+        <variable
             name="viewModel"
             type="com.example.bincard.ui.viewmodel.BinViewModel" />
     </data>
@@ -305,6 +309,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detail_margin"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{() -> binDetailFragment.launchMap(viewModel.Bin.country.latitude,viewModel.Bin.country.longitude)}"
                     app:htmlText="@{@string/latitude_longitude(viewModel.Bin.country.latitude,viewModel.Bin.country.longitude)}"
                     tools:text="(latitude: 56, longitude: 10)" />
 
