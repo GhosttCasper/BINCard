@@ -345,6 +345,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detail_margin"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{() -> binDetailFragment.openWebsite(viewModel.Bin.bank.url)}"
                     android:text="@{viewModel.Bin.bank.url}"
                     android:textColor="@color/blue"
                     tools:text="www.jyskebank.dk" />
@@ -355,6 +358,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/detail_margin"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{() -> binDetailFragment.launchContract(viewModel.Bin.bank.phone)}"
                     android:text="@{viewModel.Bin.bank.phone}"
                     tools:text="+4589893300" />
 

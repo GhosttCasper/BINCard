@@ -36,4 +36,18 @@ class BinDetailFragment : Fragment() {
         mapIntent.setPackage("com.google.android.apps.maps")
         startActivity(mapIntent)
     }
+
+    fun launchContract(phone: String)
+    {
+        val contactIntentUri = Uri.parse("tel:${phone.trim()}")
+        val callIntent = Intent(Intent.ACTION_DIAL, contactIntentUri)
+        startActivity(callIntent)
+    }
+
+    fun openWebsite(url: String)
+    {
+        val queryUrl: Uri = Uri.parse("https://${url.trim()}")
+        val intent = Intent(Intent.ACTION_VIEW, queryUrl)
+        startActivity(intent)
+    }
 }
