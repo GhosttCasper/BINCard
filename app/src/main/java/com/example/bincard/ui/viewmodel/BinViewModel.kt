@@ -54,9 +54,9 @@ class BinViewModel(private val binDatabase: BinDatabase) : ViewModel() {
 
     suspend fun addBin(bin: BinModel) {
         withContext(Dispatchers.IO) {
-            val numberId = bin.number?.let { addNumber(it) } ?: 0
-            val countryId = bin.country?.let { addCountry(it) } ?: 0
-            val bankId = bin.bank?.let { addBank(it) } ?: 0
+            val numberId = addNumber(bin.number)
+            val countryId = addCountry(bin.country)
+            val bankId = addBank(bin.bank)
             val newBin = Bin(
                 bin = bin.bin,
                 numberId = numberId,
@@ -81,7 +81,7 @@ class BinViewModel(private val binDatabase: BinDatabase) : ViewModel() {
     /* Returns an instance of the [Country] entity class.
     * This will be used to add a new entry to the Bin database.
     */
-    fun getNewCountryEntry(country: CountryModel): Country {
+    private fun getNewCountryEntry(country: CountryModel): Country {
         return Country(
             numeric = country.numeric,
             alpha2 = country.alpha2,
