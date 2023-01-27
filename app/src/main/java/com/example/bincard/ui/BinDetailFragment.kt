@@ -6,10 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.bincard.BaseApplication
+import com.example.bincard.R
 import com.example.bincard.databinding.FragmentBinDetailBinding
+import com.example.bincard.ui.viewmodel.BinApiStatus
 import com.example.bincard.ui.viewmodel.BinViewModel
 
 class BinDetailFragment : Fragment() {
@@ -30,8 +34,24 @@ class BinDetailFragment : Fragment() {
         binding.viewModel = viewModel
         binding.binDetailFragment = this@BinDetailFragment
 
+        // Observer for the network error.
+        viewModel.status.observe(viewLifecycleOwner) { status ->
+            if (status == BinApiStatus.NO_DATA) {
+                onNoData()
+                findNavController()
+                    .navigate(R.id.action_binDetailFragment_to_overviewFragment)
+            }
+        }
+
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    /**
+     * Method for displaying a Toast no found message.
+     */
+    private fun onNoData() {
+        Toast.makeText(activity, getString(R.string.no_found), Toast.LENGTH_LONG).show()
     }
 
     fun launchMap(latitude: Int, longitude: Int) {

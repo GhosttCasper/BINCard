@@ -15,7 +15,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-enum class BinApiStatus { LOADING, ERROR, DONE }
+enum class BinApiStatus { LOADING, ERROR, DONE, NO_DATA }
+
+private const val TAG_ERROR = "Error"
+private const val TAG_RETROFIT = "Retrofit"
 
 class BinViewModel(private val binDatabase: BinDatabase) : ViewModel() {
     // Create properties to represent MutableLiveData and LiveData for the API status
@@ -44,10 +47,17 @@ class BinViewModel(private val binDatabase: BinDatabase) : ViewModel() {
                     (_bins.value?.plus(_bin.value) ?: listOf(_bin.value)) as List<BinModel>?
                 addBin(_bin.value!!)
                 _status.value = BinApiStatus.DONE
+            } catch (e: retrofit2.HttpException) {
+                if (e.code() == 404)
+                    _status.value = BinApiStatus.NO_DATA
+                else
+                    _status.value = BinApiStatus.ERROR
+                _bin.value = BinModel()
+                Log.e(TAG_RETROFIT, e.toString())
             } catch (e: Exception) {
                 _status.value = BinApiStatus.ERROR
                 _bin.value = BinModel()
-                Log.e("MY_ERROR", e.toString())
+                Log.e(TAG_ERROR, e.toString())
             }
         }
     }
@@ -103,6 +113,13 @@ class BinViewModel(private val binDatabase: BinDatabase) : ViewModel() {
         val newNumber = Number(length = number.length, luhn = number.luhn)
         val generatedId: Long = binDatabase.numberDao().insert(newNumber)
         return generatedId
+    }
+
+    /**
+     * Resets the network error flag.
+     */
+    fun onNetworkErrorShown() {
+        _status.value = BinApiStatus.DONE
     }
 
     fun onBinClicked(bin: BinModel) {

@@ -19,5 +19,6 @@
     <string name="submit">Submit</string>
     <string name="enter_your_bin">Enter your BIN</string>
     <string name="try_again">BIN – first 6–8 digits from card number.\nTry again!</string>
+    <string name="no_found">No matching card is found.</string>
 
 </resources>

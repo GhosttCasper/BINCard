@@ -18,5 +18,9 @@
         android:id="@+id/binDetailFragment"
         android:name="com.example.bincard.ui.BinDetailFragment"
         android:label="BinDetailFragment"
-        tools:layout="@layout/fragment_bin_detail" />
+        tools:layout="@layout/fragment_bin_detail">
+        <action
+            android:id="@+id/action_binDetailFragment_to_overviewFragment"
+            app:destination="@id/overviewFragment" />
+    </fragment>
 </navigation>

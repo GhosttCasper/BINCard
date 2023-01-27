@@ -42,7 +42,7 @@ fun bindStatus(statusImageView: ImageView, status: BinApiStatus) {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.loading_animation)
         }
-        BinApiStatus.DONE -> {
+        BinApiStatus.DONE, BinApiStatus.NO_DATA -> {
             statusImageView.visibility = View.GONE
         }
         BinApiStatus.ERROR -> {
