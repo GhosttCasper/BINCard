@@ -93,7 +93,7 @@ class BinViewModel(private val binDatabase: BinDatabase) : ViewModel() {
         )
     }
 
-    fun addCountry(country: CountryModel): Long {
+    suspend fun addCountry(country: CountryModel): Long {
         val newCountry = getNewCountryEntry(country)
         val generatedId: Long = binDatabase.countryDao().insert(newCountry)
         return generatedId

@@ -1,7 +1,6 @@
 package com.example.bincard.data
 
 import androidx.room.Dao
-import androidx.room.Insert
 import androidx.room.Query
 import com.example.bincard.data.entities.Bank
 import com.example.bincard.data.entities.Bin
@@ -33,11 +32,8 @@ interface BankDao : BaseDao<Bank> {
     fun getBin(id: Long): Flow<Bank>
 }
 
-@Dao //: BaseDao<Country>
-interface CountryDao {
-    @Insert
-    fun insert(country: Country): Long
-
+@Dao
+interface CountryDao : BaseDao<Country> {
     @Query("SELECT * FROM countries WHERE id = :id")
     fun getBin(id: Long): Flow<Country>
 }
