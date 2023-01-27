@@ -1,6 +1,6 @@
 package com.example.bincard.network
 
-data class Bank(
+data class BankModel(
     val name: String? = "",
     val url: String? = "",
     val phone: String? = "",

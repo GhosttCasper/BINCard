@@ -7,9 +7,9 @@ import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.paris.extensions.style
-import com.example.bincard.network.Bin
-import com.example.bincard.ui.viewmodel.BinApiStatus
+import com.example.bincard.network.BinModel
 import com.example.bincard.ui.adapter.BinListAdapter
+import com.example.bincard.ui.viewmodel.BinApiStatus
 
 @BindingAdapter(value = ["htmlText"])
 fun TextView.setHtmlText(string: String?) {
@@ -29,7 +29,7 @@ fun setStyle(textView: TextView, isSelected: Boolean) {
  * Updates the data shown in the [RecyclerView]
  */
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Bin>?) {
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<BinModel>?) {
     val adapter = recyclerView.adapter as BinListAdapter
     adapter.submitList(data)
 }

@@ -1,12 +1,12 @@
 package com.example.bincard.network
 
-data class Bin(
+data class BinModel(
     var bin: String? = "",
-    val number: Number? = Number(),
+    val number: NumberModel? = NumberModel(), //nullable???
     val scheme: String? = "",
     val type: String? = "",
     val brand: String? = "",
     val prepaid: Boolean? = null,
-    val country: Country? = Country(),
-    val bank: Bank? = Bank(),
+    val country: CountryModel? = CountryModel(),
+    val bank: BankModel? = BankModel(),
 )

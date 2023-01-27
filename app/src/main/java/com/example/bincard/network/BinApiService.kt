@@ -22,7 +22,7 @@ private val retrofit = Retrofit.Builder()
 
 interface BinApiService {
     @GET("{bin}")
-    suspend fun getBinDetail(@Path("bin") binStr: String): Bin
+    suspend fun getBinDetail(@Path("bin") binStr: String): BinModel
 }
 
 // Create an object that provides a lazy-initialized retrofit service

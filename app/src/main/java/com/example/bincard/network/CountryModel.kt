@@ -1,6 +1,6 @@
 package com.example.bincard.network
 
-data class Country(
+data class CountryModel(
     val numeric: String? = "",
     val alpha2: String? = "",
     val name: String? = "",

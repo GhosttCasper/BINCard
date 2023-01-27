@@ -8,12 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.bincard.BaseApplication
 import com.example.bincard.databinding.FragmentBinDetailBinding
 import com.example.bincard.ui.viewmodel.BinViewModel
 
 class BinDetailFragment : Fragment() {
 
-    private val viewModel: BinViewModel by activityViewModels()
+    private val viewModel: BinViewModel by activityViewModels() {
+        BinViewModelFactory(
+            (activity?.application as BaseApplication).database
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,15 +42,13 @@ class BinDetailFragment : Fragment() {
         startActivity(mapIntent)
     }
 
-    fun launchContract(phone: String)
-    {
+    fun launchContract(phone: String) {
         val contactIntentUri = Uri.parse("tel:${phone.trim()}")
         val callIntent = Intent(Intent.ACTION_DIAL, contactIntentUri)
         startActivity(callIntent)
     }
 
-    fun openWebsite(url: String)
-    {
+    fun openWebsite(url: String) {
         val queryUrl: Uri = Uri.parse("https://${url.trim()}")
         val intent = Intent(Intent.ACTION_VIEW, queryUrl)
         startActivity(intent)

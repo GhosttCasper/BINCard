@@ -6,31 +6,31 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bincard.databinding.ListViewItemBinding
-import com.example.bincard.network.Bin
+import com.example.bincard.network.BinModel
 
 /**
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
  * data, including computing diffs between lists.
  */
 class BinListAdapter(val clickListener: BinListener) :
-    ListAdapter<Bin, BinListAdapter.BinViewHolder>(DiffCallback) {
+    ListAdapter<BinModel, BinListAdapter.BinViewHolder>(DiffCallback) {
 
     class BinViewHolder(
         var binding: ListViewItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(clickListener: BinListener, bin: Bin) {
+        fun bind(clickListener: BinListener, bin: BinModel) {
             binding.bin = bin
             binding.clickListener = clickListener
             binding.executePendingBindings()
         }
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<Bin>() {
-        override fun areItemsTheSame(oldItem: Bin, newItem: Bin): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<BinModel>() {
+        override fun areItemsTheSame(oldItem: BinModel, newItem: BinModel): Boolean {
             return oldItem.bin == newItem.bin
         }
 
-        override fun areContentsTheSame(oldItem: Bin, newItem: Bin): Boolean {
+        override fun areContentsTheSame(oldItem: BinModel, newItem: BinModel): Boolean {
             return oldItem.scheme == newItem.scheme && oldItem.type == newItem.type
                     && oldItem.brand == newItem.brand && oldItem.prepaid == newItem.prepaid
                     && oldItem.number?.luhn == newItem.number?.luhn && oldItem.number?.length == newItem.number?.length
@@ -51,6 +51,6 @@ class BinListAdapter(val clickListener: BinListener) :
     }
 }
 
-class BinListener(val clickListener: (bin: Bin) -> Unit) {
-    fun onClick(bin: Bin) = clickListener(bin)
+class BinListener(val clickListener: (bin: BinModel) -> Unit) {
+    fun onClick(bin: BinModel) = clickListener(bin)
 }

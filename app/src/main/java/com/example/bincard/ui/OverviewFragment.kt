@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.bincard.BaseApplication
 import com.example.bincard.R
+import com.example.bincard.data.BinDatabase
 import com.example.bincard.databinding.FragmentOverviewBinding
 import com.example.bincard.ui.adapter.BinListAdapter
 import com.example.bincard.ui.adapter.BinListener
@@ -20,7 +24,11 @@ class OverviewFragment : Fragment() {
 
     // Binding object instance with access to the views in the game_fragment.xml layout
     private lateinit var binding: FragmentOverviewBinding
-    private val viewModel: BinViewModel by activityViewModels()
+    private val viewModel: BinViewModel by activityViewModels() {
+        BinViewModelFactory(
+            (activity?.application as BaseApplication).database
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,5 +80,18 @@ class OverviewFragment : Fragment() {
             binding.textField.isErrorEnabled = false
             binding.textInputEditText.text = null
         }
+    }
+}
+
+/**
+ * Factory class to instantiate the [ViewModel] instance.
+ */
+class BinViewModelFactory(private val binDatabase: BinDatabase) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(BinViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return BinViewModel(binDatabase) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
