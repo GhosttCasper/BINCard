@@ -33,7 +33,7 @@ class BinListAdapter(val clickListener: BinListener) :
         override fun areContentsTheSame(oldItem: BinModel, newItem: BinModel): Boolean {
             return oldItem.scheme == newItem.scheme && oldItem.type == newItem.type
                     && oldItem.brand == newItem.brand && oldItem.prepaid == newItem.prepaid
-                    && oldItem.number?.luhn == newItem.number?.luhn && oldItem.number?.length == newItem.number?.length
+                    && oldItem.number == newItem.number && oldItem.number.length == newItem.number.length
                     && oldItem.country == newItem.country && oldItem.bank == newItem.bank
         }
     }

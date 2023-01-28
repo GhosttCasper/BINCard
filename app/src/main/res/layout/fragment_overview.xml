@@ -66,6 +66,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input"
             app:listData="@{viewModel.bins}"
+            app:reverseLayout="true"
+            app:stackFromEnd="true"
             tools:listitem="@layout/list_view_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

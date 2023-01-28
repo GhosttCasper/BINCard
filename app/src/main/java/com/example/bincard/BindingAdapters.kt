@@ -32,6 +32,8 @@ fun setStyle(textView: TextView, isSelected: Boolean) {
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<BinModel>?) {
     val adapter = recyclerView.adapter as BinListAdapter
     adapter.submitList(data)
+    if (adapter.itemCount > 0)
+        recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
 }
 
 @BindingAdapter("apiStatus")
