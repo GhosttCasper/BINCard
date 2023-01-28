@@ -34,7 +34,8 @@ class BinDetailFragment : Fragment() {
         binding.viewModel = viewModel
         binding.binDetailFragment = this@BinDetailFragment
 
-        // Observer for the network error.
+        // TODO перенести в onViewCreated
+        // Observer for the no data.
         viewModel.status.observe(viewLifecycleOwner) { status ->
             if (status == BinApiStatus.NO_DATA) {
                 onNoData()

@@ -26,7 +26,7 @@ class BinViewModel(private val binDatabase: BinDatabase) : ViewModel() {
     val status: LiveData<BinApiStatus> = _status
 
     // Create properties to represent MutableLiveData and LiveData for a list of Bins objects
-    private val _bins = MutableLiveData<List<BinModel>>()
+    private val _bins = MutableLiveData<List<BinModel>>(binDatabase.binDao().getBinModels())
     val bins: LiveData<List<BinModel>> = _bins
 
     //  Create properties to represent MutableLiveData and LiveData for a single BinModel object.
@@ -113,13 +113,6 @@ class BinViewModel(private val binDatabase: BinDatabase) : ViewModel() {
         val newNumber = Number(length = number.length, luhn = number.luhn)
         val generatedId: Long = binDatabase.numberDao().insert(newNumber)
         return generatedId
-    }
-
-    /**
-     * Resets the network error flag.
-     */
-    fun onNetworkErrorShown() {
-        _status.value = BinApiStatus.DONE
     }
 
     fun onBinClicked(bin: BinModel) {

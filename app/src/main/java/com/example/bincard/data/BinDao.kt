@@ -6,6 +6,7 @@ import com.example.bincard.data.entities.Bank
 import com.example.bincard.data.entities.Bin
 import com.example.bincard.data.entities.Country
 import com.example.bincard.data.entities.Number
+import com.example.bincard.network.BinModel
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -16,14 +17,17 @@ interface BinDao : BaseDao<Bin> {
     @Query("SELECT * FROM bins WHERE id = :id")
     fun getBin(id: Long): Flow<Bin>
 
-    /*@Query(
-        "SELECT * FROM bin_table " +
-                "INNER JOIN bank ON bank.id = bin_table.bank_id " +
-                "INNER JOIN country ON country.id = loan.user_id " +
-                "INNER JOIN country ON country.id = loan.user_id " +
-                "WHERE user.name LIKE :userName"
+    // Room matches column's names with field names of result
+    @Query(
+        "SELECT bins.bin, numbers.length, numbers.luhn, bins.scheme, bins.type, bins.brand, bins.prepaid, " +
+                "countries.numeric, countries.alpha2, countries.country_name, countries.emoji, countries.currency, " +
+                "countries.latitude, countries.longitude, banks.name, banks.url, banks.phone, banks.city " +
+                "FROM bins " +
+                "INNER JOIN numbers ON numbers.id = bins.number_id " +
+                "INNER JOIN countries ON countries.id = bins.country_id " +
+                "INNER JOIN banks ON banks.id = bins.bank_id"
     )
-    fun findBooksBorrowedByNameSync(userName: String): Flow<List<BinModel>>*/
+    fun getBinModels(): List<BinModel>
 }
 
 @Dao

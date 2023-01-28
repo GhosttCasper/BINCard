@@ -12,7 +12,7 @@ data class Country(
     val numeric: String? = "",
     @ColumnInfo
     val alpha2: String? = "",
-    @ColumnInfo
+    @ColumnInfo(name = "country_name")
     val name: String? = "",
     @ColumnInfo
     val emoji: String? = "",

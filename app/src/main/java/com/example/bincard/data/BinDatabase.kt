@@ -30,7 +30,7 @@ abstract class BinDatabase : RoomDatabase() {
                     context.applicationContext,
                     BinDatabase::class.java,
                     "bin_database"
-                )
+                ).allowMainThreadQueries() // TODO использовать корутины, получать базу данных в фоне
                     .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
