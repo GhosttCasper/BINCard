@@ -45,11 +45,11 @@ class BinViewModel(private val binDatabase: BinDatabase) : ViewModel() {
                     _status.value = BinApiStatus.NO_DATA
                 else
                     _status.value = BinApiStatus.ERROR
-                _bin.value = BinModel()
+                _bin.value = BinModel(bin = binInput)
                 Log.e(TAG_RETROFIT, e.toString())
             } catch (e: Exception) {
                 _status.value = BinApiStatus.ERROR
-                _bin.value = BinModel()
+                _bin.value = BinModel(bin = binInput)
                 Log.e(TAG_ERROR, e.toString())
             }
         }

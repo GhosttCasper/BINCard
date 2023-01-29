@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import com.example.bincard.BaseApplication
 import com.example.bincard.R
 import com.example.bincard.databinding.FragmentBinDetailBinding
@@ -56,8 +55,6 @@ class BinDetailFragment : Fragment() {
         viewModel.status.observe(viewLifecycleOwner) { status ->
             if (status == BinApiStatus.NO_DATA) {
                 showNoDataToast()
-                findNavController()
-                    .navigate(R.id.action_binDetailFragment_to_overviewFragment)
             }
         }
 

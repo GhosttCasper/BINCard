@@ -46,8 +46,12 @@ fun bindStatus(statusImageView: ImageView, status: BinApiStatus) {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.ic_connection_error)
         }
+        BinApiStatus.NO_DATA -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.ic_not_found)
+        }
         else -> {
             statusImageView.visibility = View.GONE
-        } //BinApiStatus.DONE, BinApiStatus.NO_DATA, BinApiStatus.INACTIVE
+        } //BinApiStatus.DONE, BinApiStatus.INACTIVE
     }
 }
