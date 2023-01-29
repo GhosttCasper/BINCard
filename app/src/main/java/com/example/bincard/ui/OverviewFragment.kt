@@ -6,24 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.bincard.BaseApplication
 import com.example.bincard.R
-import com.example.bincard.data.BinDatabase
 import com.example.bincard.databinding.FragmentOverviewBinding
 import com.example.bincard.ui.adapter.BinListAdapter
 import com.example.bincard.ui.adapter.BinListener
+import com.example.bincard.ui.viewmodel.BinApiStatus
 import com.example.bincard.ui.viewmodel.BinViewModel
+import com.example.bincard.ui.viewmodel.BinViewModelFactory
 
 const val MAX_SIZE_BIN = 8
 const val MIN_SIZE_BIN = 6
 
+/**
+ * [OverviewFragment] Main fragment displaying bin's search and all items in the database.
+ */
 class OverviewFragment : Fragment() {
 
-    // Binding object instance with access to the views in the game_fragment.xml layout
-    private lateinit var binding: FragmentOverviewBinding
+    // Binding object instance with access to the views
+    private lateinit var _binding: FragmentOverviewBinding
+    private val binding get() = _binding
+
     private val viewModel: BinViewModel by activityViewModels() {
         BinViewModelFactory(
             (activity?.application as BaseApplication).database
@@ -35,7 +39,7 @@ class OverviewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentOverviewBinding.inflate(inflater)
+        _binding = FragmentOverviewBinding.inflate(inflater)
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
@@ -52,6 +56,20 @@ class OverviewFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Observer for the no data.
+        viewModel.status.observe(viewLifecycleOwner) { status ->
+            if (status == BinApiStatus.DONE) {
+                val adapter = binding.recyclerView.adapter
+                if (adapter?.itemCount!! > 0)
+                    binding.recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
+            }
+        }
+
+    }
+
     private fun onSubmitBin() {
         val binInput = binding.textInputEditText.text.toString()
         if (isInputCorrect(binInput)) {
@@ -63,7 +81,7 @@ class OverviewFragment : Fragment() {
             setErrorTextField(true)
     }
 
-    fun isInputCorrect(input: String): Boolean {
+    private fun isInputCorrect(input: String): Boolean {
         if (input.length in MIN_SIZE_BIN..MAX_SIZE_BIN
             && input.matches(Regex("\\d+"))
         ) {
@@ -80,18 +98,5 @@ class OverviewFragment : Fragment() {
             binding.textField.isErrorEnabled = false
             binding.textInputEditText.text = null
         }
-    }
-}
-
-/**
- * Factory class to instantiate the [ViewModel] instance.
- */
-class BinViewModelFactory(private val binDatabase: BinDatabase) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(BinViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return BinViewModel(binDatabase) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

@@ -32,8 +32,6 @@ fun setStyle(textView: TextView, isSelected: Boolean) {
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<BinModel>?) {
     val adapter = recyclerView.adapter as BinListAdapter
     adapter.submitList(data)
-    if (adapter.itemCount > 0)
-        recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
 }
 
 @BindingAdapter("apiStatus")
@@ -44,12 +42,12 @@ fun bindStatus(statusImageView: ImageView, status: BinApiStatus) {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.loading_animation)
         }
-        BinApiStatus.DONE, BinApiStatus.NO_DATA -> {
-            statusImageView.visibility = View.GONE
-        }
         BinApiStatus.ERROR -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.ic_connection_error)
         }
+        else -> {
+            statusImageView.visibility = View.GONE
+        } //BinApiStatus.DONE, BinApiStatus.NO_DATA, BinApiStatus.INACTIVE
     }
 }

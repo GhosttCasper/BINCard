@@ -25,15 +25,19 @@ abstract class BinDatabase : RoomDatabase() {
         private var INSTANCE: BinDatabase? = null
 
         fun getDatabase(context: Context): BinDatabase {
+            // if the INSTANCE is not null, then return it,
+            // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     BinDatabase::class.java,
                     "bin_database"
-                ).allowMainThreadQueries() // TODO использовать корутины, получать базу данных в фоне
+                )
+                    // Wipes and rebuilds instead of migrating if no Migration object.
                     .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
+                // return instance
                 instance
             }
         }

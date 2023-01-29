@@ -65,7 +65,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input"
-            app:listData="@{viewModel.bins}"
+            app:listData="@{viewModel.allBins}"
             app:reverseLayout="true"
             app:stackFromEnd="true"
             tools:listitem="@layout/list_view_item" />

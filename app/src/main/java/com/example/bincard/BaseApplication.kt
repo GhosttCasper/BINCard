@@ -9,5 +9,7 @@ import com.example.bincard.data.BinDatabase
  */
 
 class BaseApplication : Application() {
+    // Using by lazy so the database is only created when needed
+    // rather than when the application starts
     val database: BinDatabase by lazy { BinDatabase.getDatabase(this) }
 }

@@ -1,10 +1,7 @@
 package com.example.bincard.ui.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.bincard.data.BinDatabase
 import com.example.bincard.data.entities.Bank
 import com.example.bincard.data.entities.Bin
@@ -15,19 +12,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-enum class BinApiStatus { LOADING, ERROR, DONE, NO_DATA }
+enum class BinApiStatus { INACTIVE, LOADING, ERROR, DONE, NO_DATA }
 
 private const val TAG_ERROR = "Error"
 private const val TAG_RETROFIT = "Retrofit"
 
 class BinViewModel(private val binDatabase: BinDatabase) : ViewModel() {
+    // Cache all items form the database using LiveData.
+    val allBins: LiveData<List<BinModel>> = binDatabase.binDao().getBinModels().asLiveData()
+
     // Create properties to represent MutableLiveData and LiveData for the API status
     private val _status = MutableLiveData<BinApiStatus>()
     val status: LiveData<BinApiStatus> = _status
-
-    // Create properties to represent MutableLiveData and LiveData for a list of Bins objects
-    private val _bins = MutableLiveData<List<BinModel>>(binDatabase.binDao().getBinModels())
-    val bins: LiveData<List<BinModel>> = _bins
 
     //  Create properties to represent MutableLiveData and LiveData for a single BinModel object.
     //  This will be used to display the details of an BinModel when a list item is clicked
@@ -36,15 +32,12 @@ class BinViewModel(private val binDatabase: BinDatabase) : ViewModel() {
 
     //  Create a function that get a BinModel from the api service and sets the
     //  status via a Coroutine
-    @Suppress("UNCHECKED_CAST")
     fun getBin(binInput: String) {
         viewModelScope.launch {
             _status.value = BinApiStatus.LOADING
             try {
                 _bin.value = BinApi.retrofitService.getBinDetail(binInput)
                 _bin.value!!.bin = binInput
-                _bins.value =
-                    (_bins.value?.plus(_bin.value) ?: listOf(_bin.value)) as List<BinModel>?
                 addBin(_bin.value!!)
                 _status.value = BinApiStatus.DONE
             } catch (e: retrofit2.HttpException) {
@@ -62,6 +55,9 @@ class BinViewModel(private val binDatabase: BinDatabase) : ViewModel() {
         }
     }
 
+    /**
+     * Inserts the new Bin into database.
+     */
     suspend fun addBin(bin: BinModel) {
         withContext(Dispatchers.IO) {
             val numberId = addNumber(bin.number)
@@ -116,8 +112,25 @@ class BinViewModel(private val binDatabase: BinDatabase) : ViewModel() {
     }
 
     fun onBinClicked(bin: BinModel) {
+        _status.value = BinApiStatus.INACTIVE
         // Set the BinModel object
         _bin.value = bin
-        _status.value = BinApiStatus.DONE
+    }
+
+    fun resetBin() {
+        _bin.value = BinModel()
+    }
+}
+
+/**
+ * Factory class to instantiate the [ViewModel] instance.
+ */
+class BinViewModelFactory(private val binDatabase: BinDatabase) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(BinViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return BinViewModel(binDatabase) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

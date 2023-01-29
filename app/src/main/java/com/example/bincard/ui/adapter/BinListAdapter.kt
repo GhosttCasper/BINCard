@@ -14,9 +14,20 @@ import com.example.bincard.network.BinModel
  */
 class BinListAdapter(val clickListener: BinListener) :
     ListAdapter<BinModel, BinListAdapter.BinViewHolder>(DiffCallback) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BinViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        return BinViewHolder(
+            ListViewItemBinding.inflate(layoutInflater, parent, false)
+        )
+    }
+
+    override fun onBindViewHolder(holder: BinViewHolder, position: Int) {
+        val bin = getItem(position)
+        holder.bind(clickListener, bin)
+    }
 
     class BinViewHolder(
-        var binding: ListViewItemBinding
+        private var binding: ListViewItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(clickListener: BinListener, bin: BinModel) {
             binding.bin = bin
@@ -36,18 +47,6 @@ class BinListAdapter(val clickListener: BinListener) :
                     && oldItem.number == newItem.number && oldItem.number.length == newItem.number.length
                     && oldItem.country == newItem.country && oldItem.bank == newItem.bank
         }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BinViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        return BinViewHolder(
-            ListViewItemBinding.inflate(layoutInflater, parent, false)
-        )
-    }
-
-    override fun onBindViewHolder(holder: BinViewHolder, position: Int) {
-        val bin = getItem(position)
-        holder.bind(clickListener, bin)
     }
 }
 

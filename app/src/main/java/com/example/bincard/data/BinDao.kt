@@ -27,7 +27,7 @@ interface BinDao : BaseDao<Bin> {
                 "INNER JOIN countries ON countries.id = bins.country_id " +
                 "INNER JOIN banks ON banks.id = bins.bank_id"
     )
-    fun getBinModels(): List<BinModel>
+    fun getBinModels(): Flow<List<BinModel>>
 }
 
 @Dao

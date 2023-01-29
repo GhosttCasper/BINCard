@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/overviewFragment"
         android:name="com.example.bincard.ui.OverviewFragment"
-        android:label="OverviewFragment"
+        android:label="@string/overview_fragment_title"
         tools:layout="@layout/fragment_overview">
         <action
             android:id="@+id/action_overviewFragment_to_binDetailFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/binDetailFragment"
         android:name="com.example.bincard.ui.BinDetailFragment"
-        android:label="BinDetailFragment"
+        android:label="@string/bin_detail_fragment_title"
         tools:layout="@layout/fragment_bin_detail">
         <action
             android:id="@+id/action_binDetailFragment_to_overviewFragment"
