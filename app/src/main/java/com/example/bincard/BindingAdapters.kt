@@ -13,7 +13,8 @@ import com.example.bincard.ui.viewmodel.BinApiStatus
 
 @BindingAdapter(value = ["htmlText"])
 fun TextView.setHtmlText(string: String?) {
-    text = HtmlCompat.fromHtml(string ?: "", HtmlCompat.FROM_HTML_MODE_COMPACT)
+    text =
+        if (string == null) "" else HtmlCompat.fromHtml(string, HtmlCompat.FROM_HTML_MODE_COMPACT)
 }
 
 @BindingAdapter("isSelectedStyle")

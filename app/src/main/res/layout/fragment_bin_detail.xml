@@ -312,7 +312,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:onClick="@{() -> binDetailFragment.launchMap(viewModel.Bin.country.latitude,viewModel.Bin.country.longitude)}"
-                    app:htmlText="@{@string/latitude_longitude(viewModel.Bin.country.latitude,viewModel.Bin.country.longitude)}"
+                    app:htmlText="@{viewModel.Bin.country.latitude==null ? &quot;&quot; : @string/latitude_longitude(viewModel.Bin.country.latitude,viewModel.Bin.country.longitude)}"
                     tools:text="(latitude: 56, longitude: 10)" />
 
                 <View
